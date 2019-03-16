@@ -1,7 +1,7 @@
 echo "Number of alignments of reads to reference sequences in the file"
 cut -f10 sequence.txt.sam | sort | uniq | wc -l
 echo "Ans:99952"
-echo "99952/100000 = 0.99% reads participating in the alignment"
+echo "99952/100000 = 99.9% reads participating in the alignment"
 
 echo "uniquely mapped"
 grep -c XT:A:U sequence.txt.sam
