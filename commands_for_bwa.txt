@@ -1,0 +1,27 @@
+#Install BWA
+conda install bwa
+-------------------
+
+#Create the index for the reference genome
+bwa index -p hg38bwaidx -a bwtsw hg38_truncated.fa
+
+#hg38_truncated.fa is the truncated small file instead of hg38.fa
+#Note 1: index creation only needs to be performed once (the index does not have to be recreated for every alignment job).
+#Note 2: for small genomes, use -a is instead 
+-------------------
+
+#Mapping short reads to the reference genome, eg hg38
+bwa aln -t 4 hg38bwaidx fastqfile.txt >  sequence.txt.bwa
+
+#hg38bwaidx will be the prefix to all the files created with the command
+#fastqfile.txt is the fastq file for reads created in ngs_sim.py python script which is to aligned to the ref genome
+-------------------
+
+#Create alignment in the SAM format (a generic format for storing large nucleotide sequence alignments): 
+bwa samse hg38bwaidx sequence.txt.bwa fastqfile.txt > sequence.txt.sam
+#sequence.txt.bwa bwa file created in the previous command
+#alignment is stored in sequence.txt.sam
+#out.bam file is also created through this command
+-------------------
+-------------------
+-------------------
